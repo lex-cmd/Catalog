@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TestPath": {
+      "commandName": "Project",
+      "commandLineArgs": "-q -p -h -o"
+    }
+  }
+}
