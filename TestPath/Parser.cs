@@ -1,51 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestPath;
-
-namespace TestPath
+﻿namespace TestPath
 {
 				public class Parser
 				{
-								string? rawString;
-								Catalog catalog;
+								private string? rawString { get; set; }
+								public Catalog catalog { get; set; }
 
 								public Parser(string? rawString)
 								{
 												this.rawString = rawString;
+												catalog = GetNewCatalog();
 								}
 								public Parser()
 								{
 												this.rawString = null;
+												catalog = GetNewCatalog();
 								}
 
 								public Catalog GetNewCatalog()
 								{
-												Catalog catalog = new Catalog();
-												catalog.path = Directory.GetCurrentDirectory();
-												Console.WriteLine("Current directory: " + catalog.path);
+												Catalog newCatalog = new Catalog(Directory.GetCurrentDirectory());
 
-												Console.WriteLine("rawString = " + rawString);
-												if (rawString == null || rawString == "")
+												if(String.IsNullOrWhiteSpace(rawString))
 												{
-																Console.WriteLine("Error: rawString");
+																Console.WriteLine("Parse error");
+
 																return null;
 												}
 
-												/*Console.WriteLine("rawString = " + rawString);
-												Console.WriteLine(rawString.Length);*/
-												for (int i = 0; i < rawString.Length; i++)
+												string[]? splitStr = rawString.Split(" ");
+
+												for(int i = 0; i < splitStr.Length; i++)
 												{
-																Console.WriteLine("pass");
-																if (rawString[i] == '-' && !char.IsWhiteSpace(rawString[i + 1]))
+																if(!String.IsNullOrWhiteSpace(splitStr[i]))
 																{
-																				catalog.SetFlag(rawString[i + 1]);
+																				if(splitStr[i].StartsWith('-'))
+																								if(!newCatalog.SetFlag(splitStr[i]))
+																												Console.WriteLine("Invalid Flag");
+																				try
+																				{
+																								if(splitStr[i] == "-p" && splitStr[i + 1] != null)
+																												newCatalog.path = splitStr[i + 1];
+																								if(splitStr[i] == "-o" && splitStr[i + 1] != null)
+																												newCatalog.outFile = splitStr[i + 1] + "\\sizes" + DateTime.Today.ToString().Split(" ")[0] + ".txt";
+																				}
+																				catch
+																				{
+																								Console.WriteLine("Argument error exception");
+																				}
 																}
-																Console.WriteLine();
+																catalog = newCatalog;
 												}
-												return catalog;
+												return newCatalog;
 								}
 				}
+
 }
