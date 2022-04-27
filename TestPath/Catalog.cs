@@ -130,12 +130,19 @@
 
 								private void PrefixPrint(int depth, string v)
 								{
-												for(int i = 0; i < depth; i++)
+												try
 												{
-																if(flags.quite && outFile != null)
-																				File.AppendAllTextAsync(outFile, v);
-																else
-																				Console.Write(v);
+																for(int i = 0; i < depth; i++)
+																{
+																				if(flags.quite && outFile != null)
+																								File.AppendAllTextAsync(outFile, v);
+																				else
+																								Console.Write(v);
+																}
+												}
+												catch(Exception e)
+												{
+																Console.WriteLine(e.ToString());
 												}
 								}
 

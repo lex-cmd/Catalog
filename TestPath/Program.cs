@@ -23,12 +23,19 @@ if(catalog == null)
 }
 //	catalog.PrintFlags();
 
-if(catalog.path != null)
-				catalog.PrintPath(catalog.path, 0, catalog.GetDirectorySize(catalog.path));
-else
-				Console.WriteLine(catalog.path + ": Error Path");
+try
+{
+				if(catalog.path != null)
+								catalog.PrintPath(catalog.path, 0, catalog.GetDirectorySize(catalog.path));
+				else
+								Console.WriteLine(catalog.path + ": Error Path");
 
-if(checkLine != null)
-				catalog.RecOutput(catalog.path);
-else
-				Console.WriteLine("Error Output");
+				if(checkLine != null)
+								catalog.RecOutput(catalog.path);
+				else
+								Console.WriteLine("Error Output");
+}
+catch(Exception e)
+{
+				Console.WriteLine(e.Message);
+}
