@@ -10,11 +10,12 @@ foreach(string arg in argc)
 				checkLine += arg + " ";
 }
 
-checkLine = checkLine.Trim();
+if(checkLine != null)
+				checkLine = checkLine.Trim();
 
 Parser parser = new TestPath.Parser(checkLine);
 
-Catalog? catalog = parser.catalog;
+Catalog? catalog = parser.GetNewCatalog();
 
 if(catalog == null)
 {

@@ -3,17 +3,14 @@
 				public class Parser
 				{
 								private string? rawString { get; set; }
-								public Catalog catalog { get; set; }
 
 								public Parser(string? rawString)
 								{
 												this.rawString = rawString;
-												catalog = GetNewCatalog();
 								}
 								public Parser()
 								{
 												this.rawString = null;
-												catalog = GetNewCatalog();
 								}
 
 								public Catalog GetNewCatalog()
@@ -41,14 +38,17 @@
 																								if(splitStr[i] == "-p" && splitStr[i + 1] != null)
 																												newCatalog.path = splitStr[i + 1];
 																								if(splitStr[i] == "-o" && splitStr[i + 1] != null)
-																												newCatalog.outFile = splitStr[i + 1] + "\\sizes" + DateTime.Today.ToString().Split(" ")[0] + ".txt";
+																								{
+																												newCatalog.outFile = splitStr[i + 1] + "\\sizes " + DateTime.Today.ToString().Split(" ")[0] + ".txt";
+																												if(File.Exists(newCatalog.outFile))
+																																File.Delete(newCatalog.outFile);
+																								}
 																				}
 																				catch
 																				{
 																								Console.WriteLine("Argument error exception");
 																				}
 																}
-																catalog = newCatalog;
 												}
 												return newCatalog;
 								}

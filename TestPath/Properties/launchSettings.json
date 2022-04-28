@@ -2,7 +2,7 @@
   "profiles": {
     "TestPath": {
       "commandName": "Project",
-      "commandLineArgs": "-p D:\\test -h -o D:\\ -q"
+      "commandLineArgs": "-h -q"
     }
   }
 }

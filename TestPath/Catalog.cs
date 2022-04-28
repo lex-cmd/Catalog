@@ -15,27 +15,11 @@
 								{
 												this.path = path;
 												flags = new Flags();
-												outFile = "sizes" + DateTime.Today.ToString().Split(" ")[0] + ".txt";
-												File.Delete(outFile);
-								}
-
-								public Catalog()
-								{
-												path = Directory.GetCurrentDirectory();
-												flags = new Flags();
 								}
 
 								private struct Flags
 								{
 												public bool quite, path, output, humanread;
-
-												public Flags()
-												{
-																quite = false;
-																path = false;
-																output = false;
-																humanread = false;
-												}
 								}
 								public bool SetFlag(string str)
 								{
@@ -107,7 +91,6 @@
 																finalPrint += getHumanReadSize(sizeToPrint);
 												else
 																finalPrint += " (" + sizeToPrint + ")";
-
 												if(flags.quite && outFile != null)
 																File.AppendAllTextAsync(outFile, finalPrint + "\n");
 												else
