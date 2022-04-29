@@ -22,7 +22,7 @@ if(catalog == null)
 				Console.WriteLine("Parse error");
 				return;
 }
-//	catalog.PrintFlags();
+//catalog.PrintFlags();
 
 try
 {

@@ -15,6 +15,7 @@
 								{
 												this.path = path;
 												flags = new Flags();
+												outFile = outFile = Directory.GetCurrentDirectory() + "\\sizes " + DateTime.Today.ToString().Split(" ")[0] + ".txt";
 								}
 
 								private struct Flags
@@ -91,7 +92,7 @@
 																finalPrint += getHumanReadSize(sizeToPrint);
 												else
 																finalPrint += " (" + sizeToPrint + ")";
-												if(flags.quite && outFile != null)
+												if(flags.quite || flags.quite && outFile != null)
 																File.AppendAllTextAsync(outFile, finalPrint + "\n");
 												else
 																Console.WriteLine(finalPrint);
