@@ -40,9 +40,7 @@
 
 		public void PrintFlags()
 		{
-			Console.WriteLine("Quite = " + flags.quite + "\nPath = "
-															+ flags.path + "\nOutput = " + flags.output
-															+ "\nHumanread = " + flags.humanread);
+			Console.WriteLine("Quite = " + flags.quite + "\nPath = " + flags.path + "\nOutput = " + flags.output + "\nHumanread = " + flags.humanread);
 		}
 
 		public void RecOutput(string? path, int depth = 1)
@@ -98,14 +96,14 @@
 				Console.WriteLine(finalPrint);
 		}
 
-		private string getHumanReadSize(ulong sizeToPrintInBytes)
+		private string getHumanReadSize(double sizeToPrintInBytes)
 		{
 			string[] byteUnits = { " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB" };
 			int i = 0;
 
-			while(sizeToPrintInBytes > 1024)
+			while(sizeToPrintInBytes > 1024f)
 			{
-				sizeToPrintInBytes /= 1024;
+				sizeToPrintInBytes /= 1024f;
 				i++;
 			}
 
